@@ -243,7 +243,7 @@ http://localhost:5000
 
 ---
 
-## 👥 Team Members — ML-0027
+## 👥 Team Members 
 
 | Name | Role | Responsibility |
 |------|------|---------------|
