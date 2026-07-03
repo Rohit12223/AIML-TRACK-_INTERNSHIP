@@ -1,4 +1,4 @@
-
+<img width="1897" height="767" alt="image" src="https://github.com/user-attachments/assets/9b6aa86c-39ec-4c96-ab2a-052bce43aba9" />
 
 # 🌍 A Comprehensive Measure of Well-Being
 ### Human Development Index (HDI) Predictor
@@ -56,7 +56,7 @@ No simple, interactive, ML-powered tool exists to predict HDI scores from basic 
 ## 📁 Project Structure
 
 ```
-ML-0027-Human-Development-Index/
+AIML-TRACK-_INTERNSHIP/
 │
 ├── Dataset/
 │   └── HDI.csv                    ← UNDP HDI Dataset (Kaggle, 191 countries)
@@ -111,7 +111,7 @@ cd AIML-TRACK-_INTERNSHIP
 
 ### Step 2 — Install Required Packages
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn Flask jupyter notebook
+pip install -r requirements.txt
 ```
 
 ### Step 3 — Download the Dataset
@@ -200,7 +200,7 @@ http://localhost:5000
 |-------|---------|
 | **Name** | Human Development Index Dataset |
 | **Source** | Kaggle |
-| **Link** | https://www.kaggle.com/datasets/iamsouravbanerjee/human-development-index-dataset |
+| **Link** | [Human Development Index Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/human-development-index-dataset) | |
 | **Year** | 2021 |
 | **Rows** | 191 countries |
 | **Columns Used** | Life Expectancy, Expected Schooling, Mean Schooling, GNI per Capita, HDI |
@@ -222,12 +222,9 @@ http://localhost:5000
 ## 👥 Team Members 
 
 | Name | Role | Responsibility |
-|------|------|---------------|
-| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, overall coordination |
-Frontend HTML/CSS development | Model evaluation and testing |Flask integration and result page | 
+|------|------|----------------|
+| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, Frontend (HTML/CSS), Flask integration, Model evaluation & testing, Overall coordination |
 | **Jagan Surya Satish Reddy Medapati** | Member | Dataset collection and preprocessing |
-
----
 
 ## 📦 Requirements
 
@@ -250,12 +247,11 @@ pip install -r requirements.txt
 ---
 
 
-**Date:** 03 July 2026
+**Last Updated:** 03 July 2026
 
 ## Author
 
-**J. Rohit Venkata Manikanta**
+**Rohit Venkata Manikanta Jannu**
 
-LinkedIn: 
-https://www.linkedin.com/in/rohit-venkata-manikanta-jannu-a576a9379
+**LinkedIn:** [Rohit Venkata Manikanta Jannu](https://www.linkedin.com/in/rohit-venkata-manikanta-jannu-a576a9379)
 
