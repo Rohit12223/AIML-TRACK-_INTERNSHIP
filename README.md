@@ -1,4 +1,4 @@
-<img width="1897" height="767" alt="image" src="https://github.com/user-attachments/assets/9b6aa86c-39ec-4c96-ab2a-052bce43aba9" />
+
 
 # 🌍 A Comprehensive Measure of Well-Being
 ### Human Development Index (HDI) Predictor
