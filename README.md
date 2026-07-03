@@ -223,7 +223,8 @@ http://localhost:5000
 
 | Name | Role | Responsibility |
 |------|------|---------------|
-| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, overall coordination | Frontend HTML/CSS development | Model evaluation and testing |Flask integration and result page | 
+| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, overall coordination |
+Frontend HTML/CSS development | Model evaluation and testing |Flask integration and result page | 
 | **Jagan Surya Satish Reddy Medapati** | Member | Dataset collection and preprocessing |
 
 ---
