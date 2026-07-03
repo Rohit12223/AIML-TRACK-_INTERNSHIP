@@ -165,30 +165,6 @@ http://localhost:5000
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-*(Paste screenshot of home.html — HDI introduction, 4 category cards, Predict Now button)*
-
----
-
-### Prediction Form with Live Estimator
-*(Paste screenshot of indexnew.html — dark form, 4 input fields, live score panel on left)*
-
----
-
-### Result Page
-*(Paste screenshot of resultnew.html — predicted score e.g. "High HDI 0.74" + gradient scale bar)*
-
----
-
-### Jupyter Notebook — Training Complete
-*(Paste screenshot of HumDevIndex.ipynb showing "Model saved as HDI.pkl ✅" output)*
-
----
-
-### Flask Server Running
-*(Paste screenshot of VS Code terminal showing `* Running on http://127.0.0.1:5000`)*
 
 ---
 
@@ -247,7 +223,7 @@ http://localhost:5000
 
 | Name | Role | Responsibility |
 |------|------|---------------|
-| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, overall coordination | Frontend HTML/CSS development | Model evaluation and testing | Flask integration and result page |
+| **Rohit Venkata Manikanta Jannu** | 🏆 Team Lead | ML model, Flask backend, overall coordination | Frontend HTML/CSS development | Model evaluation and testing | Flask integration and result page | 
 | **Jagan Surya Satish Reddy Medapati** | Member | Dataset collection and preprocessing |
 
 ---
