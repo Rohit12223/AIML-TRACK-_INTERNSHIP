@@ -7,7 +7,6 @@
 ![Flask](https://img.shields.io/badge/Flask-2.x-black?style=for-the-badge&logo=flask)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?style=for-the-badge&logo=scikit-learn)
 ![Kaggle](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?style=for-the-badge&logo=kaggle)
-![GitHub](https://img.shields.io/badge/Team-ML--0027-green?style=for-the-badge&logo=github)
 
 **A machine learning web application that predicts a country's Human Development Index score in real time**
 
