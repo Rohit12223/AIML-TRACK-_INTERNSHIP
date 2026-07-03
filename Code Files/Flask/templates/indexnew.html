@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict HDI - Human Development Index</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main: #0a0a1a;
+            --bg-card: rgba(10, 14, 34, 0.88);
+            --bg-field: rgba(255, 255, 255, 0.05);
+            --border-soft: rgba(0, 150, 255, 0.16);
+            --border-strong: rgba(0, 150, 255, 0.3);
+            --text-main: #ffffff;
+            --text-soft: #c8d8f0;
+            --text-muted: #8aa6cf;
+            --accent-red: #ff3333;
+            --accent-blue: #0095ff;
+            --accent-blue-soft: #a0c4ff;
+            --accent-purple: #6a11cb;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 45%, rgba(0, 80, 200, 0.16) 0%, transparent 58%),
+                radial-gradient(ellipse at 80% 18%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 65% 85%, rgba(100, 0, 200, 0.12) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 50px;
+            background: rgba(10, 10, 26, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-soft);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            letter-spacing: 1px;
+            font-family: "Comic Sans MS", cursive;
+        }
+
+        .navbar nav a {
+            color: var(--accent-blue-soft);
+            text-decoration: none;
+            margin-left: 35px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar nav a:hover {
+            color: #ffffff;
+        }
+
+        .navbar nav a.active {
+            color: #ffffff;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 3px;
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 56px;
+        }
+
+        .predict-layout {
+            width: 100%;
+            max-width: 1120px;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 28px;
+        }
+
+        .intro-card,
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 24px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+        }
+
+        .intro-card {
+            padding: 42px 34px;
+        }
+
+        .intro-icon {
+            font-size: 3.4rem;
+            margin-bottom: 18px;
+        }
+
+        .intro-card h1 {
+            font-size: 2.6rem;
+            line-height: 1.1;
+            color: #ff2222;
+            font-family: "Comic Sans MS", cursive;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 28px rgba(255, 50, 50, 0.32);
+            margin-bottom: 14px;
+        }
+
+        .intro-card .subtitle {
+            color: var(--accent-blue-soft);
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 22px;
+        }
+
+        .intro-copy {
+            color: var(--text-soft);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .metric-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .metric-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 14px;
+            padding: 16px 18px;
+        }
+
+        .metric-item h3 {
+            font-size: 0.98rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .metric-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.88rem;
+        }
+
+        .form-card {
+            padding: 42px 34px 36px;
+        }
+
+        .form-card h2 {
+            font-size: 1.9rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-blue-soft);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-field);
+            color: var(--text-main);
+            font-size: 0.98rem;
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: #7f96bb;
+        }
+
+        .form-group input:focus {
+            border-color: var(--border-strong);
+            box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.12);
+        }
+
+        .range-hint {
+            color: var(--text-muted);
+            font-size: 0.84rem;
+        }
+
+        .predict-btn {
+            margin-top: 8px;
+            border: none;
+            border-radius: 999px;
+            padding: 16px 28px;
+            background: linear-gradient(135deg, var(--accent-purple), #2575fc);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(101, 17, 203, 0.35);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(101, 17, 203, 0.46);
+        }
+
+        @media (max-width: 920px) {
+            .predict-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .navbar nav a {
+                margin-left: 18px;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .page-shell {
+                padding: 104px 16px 36px;
+            }
+
+            .intro-card,
+            .form-card {
+                padding: 28px 20px;
+            }
+
+            .intro-card h1 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Human Development Index</div>
+        <nav>
+            <a href="/Home">Home</a>
+            <a href="/Prediction" class="active">Predict</a>
+        </nav>
+    </div>
+
+    <main class="page-shell">
+        <section class="predict-layout">
+            <div class="intro-card">
+                <div class="intro-icon">🌍</div>
+                <h1>Predict Human Development Index</h1>
+                <p class="subtitle">A machine learning web application using Flask</p>
+                <p class="intro-copy">
+                    Enter the core indicators below to estimate a country's HDI score using your trained model.
+                </p>
+
+                <div class="metric-list">
+                    <div class="metric-item">
+                        <h3>Health Indicator</h3>
+                        <p>Life expectancy shows the general health and longevity of the population.</p>
+                    </div>
+                    <div class="metric-item">
+                        <h3>Education Indicators</h3>
+                        <p>Expected and mean years of schooling reflect educational development.</p>
+                    </div>
+                    <div class="metric-item">
+                        <h3>Income Indicator</h3>
+                        <p>Gross national income per capita shows the economic condition of a country.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>Prediction Form</h2>
+                <p class="form-subtitle">
+                    Fill all the values correctly and click predict.
+                </p>
+
+                <form action="/predict" method="post">
+                    <div class="form-group">
+                        <label>Life Expectancy</label>
+                        <input type="text" name="Life expectancy" placeholder="Enter life expectancy (range 50-89)" required>
+                        <div class="range-hint">Example: 72.5</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expected Years of Schooling</label>
+                        <input type="text" name="Expected years of schooling" placeholder="Enter expected years of schooling (range 1-18)" required>
+                        <div class="range-hint">Example: 13.2</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mean Years of Schooling</label>
+                        <input type="text" name="Mean years of schooling" placeholder="Enter mean years of schooling (range 1-15)" required>
+                        <div class="range-hint">Example: 8.5</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gross National Income (GNI) per Capita</label>
+                        <input type="text" name="Gross national income (GNI) per capita" placeholder="Enter GNI per capita (range 600-75000)" required>
+                        <div class="range-hint">Example: 15000</div>
+                    </div>
+
+                    <button type="submit" class="predict-btn">🔮 Predict</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
